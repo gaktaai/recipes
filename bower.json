@@ -1,0 +1,15 @@
+{
+  "name": "workspace",
+  "homepage": "https://github.com/gaktaai/receptek_gaktaai",
+  "authors": [
+    "gaktaai <gaktaai@freemail.hu>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
