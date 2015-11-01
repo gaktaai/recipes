@@ -1,27 +1,31 @@
 var express = require('express');
 var app = express();
 
+//config
+app.set('views', './views');
+app.set('view engine', 'hbs');
+
 //middlewares
 app.use(express.static('public'));
 
 //endpoints
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.render('index');
 });
 app.get('/potions/list', function (req, res) {
-    res.sendFile(__dirname + '/potions.html');
+    res.render('potions/list');
 });
 app.get('/potions/new', function (req, res) {
-    res.sendFile(__dirname + '/newpotion.html');
+    res.render('potions/new');
 });
 app.get('/potions/all', function (req, res) {
-    res.sendFile(__dirname + '/allpotions.html');
+    res.render('potions/all');
 });
 app.get('/login', function (req, res) {
-    res.sendFile(__dirname + '/login.html');
+    res.render('login');
 });
 app.get('/signup', function (req, res) {
-    res.sendFile(__dirname + '/signup.html');
+    res.render('signup');
 });
 
 var port = process.env.PORT || 3000;
