@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gaktaai/receptek_gaktaai.git"
+    "url": "git+https://github.com/gaktaai/recipes.git"
   },
   "author": "gaktaai",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gaktaai/receptek_gaktaai/issues"
+    "url": "https://github.com/gaktaai/recipes/issues"
   },
-  "homepage": "https://github.com/gaktaai/receptek_gaktaai#readme"
+  "homepage": "https://github.com/gaktaai/recipes#readme"
 }
