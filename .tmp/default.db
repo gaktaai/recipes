@@ -1,0 +1,208 @@
+{
+  "data": {
+    "potion": [
+      {
+        "name": "Cure for Boils",
+        "effect": "Cures scars and pain caused by boils.",
+        "ingredients": "Porcupine Quills, Snake Fangs, Horned Slugs",
+        "date": "2015-11-01T21:53:16.000Z",
+        "status": "new",
+        "user": {
+          "username": "ll",
+          "email": "ll@ll.hu",
+          "password": "$2a$10$OCfpwgzY0efVO0u/brTVcuY6TxeqG6cm4PHnXezeOMmy9lOgOznja",
+          "role": "potionMaster",
+          "createdAt": "2015-11-01T16:20:02.369Z",
+          "updatedAt": "2015-11-01T16:20:02.369Z",
+          "id": 1
+        },
+        "createdAt": "2015-11-01T21:53:16.985Z",
+        "updatedAt": "2015-11-01T21:53:16.985Z",
+        "id": 1
+      },
+      {
+        "name": "Antidote to Common Poisons",
+        "effect": "It counteracts ordinary poisons, such as creature bites and stings.",
+        "ingredients": "Bezoar, Mistletoe Berries, Unicorn Horn",
+        "date": "2015-11-01T21:54:06.000Z",
+        "status": "new",
+        "user": {
+          "username": "ll",
+          "email": "ll@ll.hu",
+          "password": "$2a$10$OCfpwgzY0efVO0u/brTVcuY6TxeqG6cm4PHnXezeOMmy9lOgOznja",
+          "role": "potionMaster",
+          "createdAt": "2015-11-01T16:20:02.369Z",
+          "updatedAt": "2015-11-01T16:20:02.369Z",
+          "id": 1
+        },
+        "createdAt": "2015-11-01T21:54:06.507Z",
+        "updatedAt": "2015-11-01T21:54:06.507Z",
+        "id": 2
+      },
+      {
+        "name": "Polyjuice Potion",
+        "effect": "Changes you to look like someone else.",
+        "ingredients": "Fluxweed, Leeches, Knotgrass, Bicorn Horn, Boomslang Skin, Lacewing flies, some hair or nail piece of the &quot;chosen one&quot;",
+        "date": "2015-11-01T21:54:59.000Z",
+        "status": "new",
+        "user": {
+          "username": "ss",
+          "email": "ss@slytherin.co.uk",
+          "password": "$2a$10$3NU.MMOi7Yp3j7hwAHi1t.YTiqLkvZtr08JwjIkcySoa8XOScGynS",
+          "role": "advancedPotionMaster",
+          "createdAt": "2015-11-01T16:22:14.640Z",
+          "updatedAt": "2015-11-01T16:22:14.640Z",
+          "id": 2
+        },
+        "createdAt": "2015-11-01T21:54:59.857Z",
+        "updatedAt": "2015-11-01T21:54:59.857Z",
+        "id": 3
+      },
+      {
+        "name": "Sleeping Draught",
+        "effect": "Temporarily sends you to sleep.",
+        "ingredients": "Lavender, Flobberworm Mucus, Valerian Sprigs",
+        "date": "2015-11-01T21:55:20.000Z",
+        "status": "new",
+        "user": {
+          "username": "ss",
+          "email": "ss@slytherin.co.uk",
+          "password": "$2a$10$3NU.MMOi7Yp3j7hwAHi1t.YTiqLkvZtr08JwjIkcySoa8XOScGynS",
+          "role": "advancedPotionMaster",
+          "createdAt": "2015-11-01T16:22:14.640Z",
+          "updatedAt": "2015-11-01T16:22:14.640Z",
+          "id": 2
+        },
+        "createdAt": "2015-11-01T21:55:20.053Z",
+        "updatedAt": "2015-11-01T21:55:20.053Z",
+        "id": 4
+      },
+      {
+        "name": "Wideeye or Awakening Potion",
+        "effect": "Prevents sleep, revives from drugging and concussion.",
+        "ingredients": "Snake Fangs, Wolfsbane, Dried Billywig Stings",
+        "date": "2015-11-01T21:55:43.000Z",
+        "status": "new",
+        "user": {
+          "username": "ss",
+          "email": "ss@slytherin.co.uk",
+          "password": "$2a$10$3NU.MMOi7Yp3j7hwAHi1t.YTiqLkvZtr08JwjIkcySoa8XOScGynS",
+          "role": "advancedPotionMaster",
+          "createdAt": "2015-11-01T16:22:14.640Z",
+          "updatedAt": "2015-11-01T16:22:14.640Z",
+          "id": 2
+        },
+        "createdAt": "2015-11-01T21:55:43.038Z",
+        "updatedAt": "2015-11-01T21:55:43.038Z",
+        "id": 5
+      }
+    ],
+    "user": [
+      {
+        "username": "ll",
+        "email": "ll@ll.hu",
+        "password": "$2a$10$OCfpwgzY0efVO0u/brTVcuY6TxeqG6cm4PHnXezeOMmy9lOgOznja",
+        "role": "potionMaster",
+        "createdAt": "2015-11-01T16:20:02.369Z",
+        "updatedAt": "2015-11-01T16:20:02.369Z",
+        "id": 1
+      },
+      {
+        "username": "ss",
+        "email": "ss@slytherin.co.uk",
+        "password": "$2a$10$3NU.MMOi7Yp3j7hwAHi1t.YTiqLkvZtr08JwjIkcySoa8XOScGynS",
+        "role": "advancedPotionMaster",
+        "createdAt": "2015-11-01T16:22:14.640Z",
+        "updatedAt": "2015-11-01T16:22:14.640Z",
+        "id": 2
+      }
+    ]
+  },
+  "schema": {
+    "potion": {
+      "name": {
+        "type": "string",
+        "unique": true
+      },
+      "effect": {
+        "type": "string"
+      },
+      "ingredients": {
+        "type": "string"
+      },
+      "date": {
+        "type": "datetime"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "new",
+          "assigned",
+          "success",
+          "rejected",
+          "pending"
+        ]
+      },
+      "username": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "username",
+        "via": "username"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "user": {
+      "username": {
+        "type": "string",
+        "unique": true
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "password": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string",
+        "enum": [
+          "potionMaster",
+          "advancedPotionMaster"
+        ],
+        "defaultsTo": "potionMaster"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "potion": {
+      "id": 5
+    },
+    "user": {
+      "id": 2
+    }
+  }
+}

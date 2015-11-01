@@ -37,16 +37,19 @@
                           <ul class="dropdown-menu">
                             <li><a href="/potions/list">My potions</a></li>
                             <li><a href="/potions/new">Add new potion</a></li>
-                            <li role="separator" class="divider hidden"></li>
-                            <li><a href="/potions/all" class="hidden">Overview all potions</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/potions/all">Overview all potions</a></li>
                           </ul>
                         </li>
                       </ul>
                       
                       <ul class="nav navbar-nav navbar-right">
-                        <li class="username hidden"></li>
+                        {{#if loggedIn}}
+                        <li><a href="/logout">Logout</a></li>
+                        {{else}}
                         <li><a href="/login">Login</a></li>
-                        <li><a href="/signup">Sign up</a></li>
+                        <li><a href="/login/signup">Sign up</a></li>
+                        {{/if}}
                       </ul>
                     </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->

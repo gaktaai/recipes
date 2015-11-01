@@ -4,10 +4,117 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var flash = require('connect-flash');
+
+var Waterline = require('waterline');
+
+var waterlineConfig = require('./config/waterline');
+var potionCollection = require('./models/potion');
+var userCollection = require('./models/user');
+
+var indexController = require('./controllers/index');
+var potionController = require('./controllers/potion');
+var loginController = require('./controllers/login');
+
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+});
+
+// Local Strategy for sign-up
+passport.use('local-signup', new LocalStrategy({
+        usernameField: 'username',
+        passwordField: 'password',
+        passReqToCallback: true,
+    },   
+    function(req, username, password, done) {
+        req.app.models.user.findOne({ username: username }, function(err, user) {
+            if (err) { return done(err); }
+            if (user) {
+                return done(null, false, { message: 'Létező username.' });
+            }
+            req.app.models.user.create(req.body)
+            .then(function (user) {
+                return done(null, user);
+            })
+            .catch(function (err) {
+                return done(null, false, { message: err.details });
+            })
+        });
+    }
+));
+
+passport.use('local', new LocalStrategy({
+        usernameField: 'username',
+        passwordField: 'password',
+        passReqToCallback: true,
+    },
+    function(req, username, password, done) {
+        req.app.models.user.findOne({ username: username }, function(err, user) {
+            if (err) { return done(err); }
+            if (!user || !user.validPassword(password)) {
+                return done(null, false, { message: 'Helytelen adatok.' });
+            }
+            return done(null, user);
+        });
+    }
+));
+
+
+// Middleware segédfüggvények
+function setLocalsForLayout() {
+    return function (req, res, next) {
+        res.locals.loggedIn = req.isAuthenticated();
+        res.locals.user = req.user;
+        next();
+    }
+}
+
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    else {
+        res.redirect('/login');
+    }
+}
+
+function andRestrictTo(role) {
+    console.log(role);
+    return function(req, res, next) {
+        if (req.user.role == role) {
+            next();
+        }
+        else {
+            res.redirect('/potions/list');
+        }
+    }
+}
+
 var app = express();
 
-//Model layer
-var potionContainer = [];
+//config
+app.set('views', './views');
+app.set('view engine', 'hbs');
+
+//middlewares
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+app.use(session({
+    cookie: { maxAge: 600000 },
+    secret: 'titkos szoveg',
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(setLocalsForLayout());
 
 //Viewmodel réteg
 var statusTexts = {
@@ -33,76 +140,40 @@ function decoratePotions(potionContainer) {
     });
 }
 
-//config
-app.set('views', './views');
-app.set('view engine', 'hbs');
-
-//middlewares
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(expressValidator());
-app.use(session({
-    cookie: { maxAge: 60000 },
-    secret: 'titkos szoveg',
-    resave: false,
-    saveUninitialized: false,
-}));
-app.use(flash());
-
 //endpoints
-app.get('/', function (req, res) {
-    res.render('index');
-});
-app.get('/potions/list', function (req, res) {
-    res.render('potions/list', {
-        errors: decoratePotions(potionContainer),
-        messages: req.flash('info')
-    });
-});
-app.get('/potions/new', function (req, res) {
-    var validationErrors = (req.flash('validationErrors') || [{}]).pop();
-    var data = (req.flash('data') || [{}]).pop();
-    
-    res.render('potions/new', {
-        validationErrors: validationErrors,
-        data: data,
-    });
-});
-app.post('/potions/new', function (req, res) {
-    req.checkBody('name', 'Error in field "name"').notEmpty().withMessage('Required');
-    req.checkBody('effect', 'Error in field "effect"').notEmpty().withMessage('Required');
-    req.sanitizeBody('ingredients').escape();
-    req.checkBody('ingredients', 'Error in field "ingredients"').notEmpty().withMessage('Required, e.g.: Boomslang Skin, Bezoar, Unicorn Horn');
-    
-    var validationErrors = req.validationErrors(true);
-    console.log(validationErrors);
-    
-    if (validationErrors) {
-        req.flash('validationErrors', validationErrors);
-        req.flash('data', req.body);
-        res.redirect('/potions/new');
-    }
-    else {
-        potionContainer.push({
-            name: req.body.name,
-            effect: req.body.effect,
-            ingredients: req.body.ingredients,
-            date: (new Date()).toLocaleString(),
-            status: 'new'
+app.use('/', indexController);
+app.use('/potions', ensureAuthenticated, potionController);
+app.get('/potions/all', andRestrictTo('advancedPotionMaster'), ensureAuthenticated, function(req, res) {
+    req.app.models.potion.find().then(function (potions) {
+        res.render('potions/all', {
+            potions: decoratePotions(potions)
         });
-        req.flash('info', 'Recipe added successfully!');
-        res.redirect('/potions/list');
-    }
+    });
 });
-app.get('/potions/all', function (req, res) {
-    res.render('potions/all');
-});
-app.get('/login', function (req, res) {
-    res.render('login');
-});
-app.get('/signup', function (req, res) {
-    res.render('signup');
+app.use('/login', loginController);
+
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
 });
 
-var port = process.env.PORT || 3000;
-app.listen(port);
+// ORM példány
+var orm = new Waterline();
+orm.loadCollection(Waterline.Collection.extend(potionCollection));
+orm.loadCollection(Waterline.Collection.extend(userCollection));
+
+// ORM indítása
+orm.initialize(waterlineConfig, function(err, models) {
+    if(err) throw err;
+    
+    app.models = models.collections;
+    app.connections = models.connections;
+    
+    // Start Server
+    var port = process.env.PORT || 3000;
+    app.listen(port, function () {
+        console.log('Server is started.');
+    });
+    
+    console.log("ORM is started.");
+});

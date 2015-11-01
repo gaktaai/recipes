@@ -4,12 +4,19 @@
   "description": "Alkalmazások fejlesztése beadandó",
   "main": "server.js",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.14.1",
     "connect-flash": "^0.1.1",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "express-validator": "^2.18.0",
-    "hbs": "^3.1.1"
+    "hbs": "^3.1.1",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "sails-disk": "^0.10.8",
+    "sails-memory": "^0.10.5",
+    "sails-postgresql": "^0.10.16",
+    "waterline": "^0.10.26"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
