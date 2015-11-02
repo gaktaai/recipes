@@ -22,7 +22,7 @@ module.exports = {
         },
         status: {
             type: 'string',
-            enum: ['new', 'assigned', 'success', 'rejected', 'pending'],
+            enum: ['new', 'read', 'success', 'rejected', 'pending'],
             required: true,
         },
         username: {

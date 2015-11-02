@@ -2,11 +2,11 @@
   "data": {
     "potion": [
       {
-        "name": "Cure for Boils",
+        "name": "Cure for ",
         "effect": "Cures scars and pain caused by boils.",
         "ingredients": "Porcupine Quills, Snake Fangs, Horned Slugs",
         "date": "2015-11-01T21:53:16.000Z",
-        "status": "new",
+        "status": "read",
         "user": {
           "username": "ll",
           "email": "ll@ll.hu",
@@ -17,7 +17,7 @@
           "id": 1
         },
         "createdAt": "2015-11-01T21:53:16.985Z",
-        "updatedAt": "2015-11-01T21:53:16.985Z",
+        "updatedAt": "2015-11-02T21:16:09.335Z",
         "id": 1
       },
       {
@@ -137,7 +137,7 @@
         "type": "string",
         "enum": [
           "new",
-          "assigned",
+          "read",
           "success",
           "rejected",
           "pending"

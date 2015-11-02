@@ -80,16 +80,59 @@ router.post('/new', function (req, res) {
 router.get('/all/edit/:id', function(req, res) {
     var id = req.params.id;
     var validationErrors = (req.flash('validationErrors') || [{}]).pop();
-    var data = (req.flash('data') || [{}]).pop();
-    /*
-    req.app.models.potion.findOne({ id: id}).then(function (potions) {
+
+    req.app.models.potion.findOne({ id: id}).then(function (potion) {
         res.render('potions/new', {
-            potion: potions,
+            view: true,
             validationErrors: validationErrors,
-            data: data,
+            data: potion,
         }); 
     });
-    */
+});
+
+router.post('/all/edit/:id', function (req, res) {
+    req.checkBody('name', 'Error in field "name"').notEmpty().withMessage('Required');
+    req.checkBody('effect', 'Error in field "effect"').notEmpty().withMessage('Required');
+    req.sanitizeBody('ingredients').escape();
+    req.checkBody('ingredients', 'Error in field "ingredients"').notEmpty().withMessage('Required, e.g.: Boomslang Skin, Bezoar, Unicorn Horn');
+    
+    var validationErrors = req.validationErrors(true);
+    var id = req.params.id;
+    
+    if (validationErrors) {
+        console.log("validerror");
+        req.flash('validationErrors', validationErrors);
+        req.flash('data', req.body);
+        res.redirect('/errors/:' + id);   
+    }
+    else {
+        req.app.models.potion.update({id: id}, {
+            name: req.body.name,
+            effect: req.body.effect,
+            ingredients: req.body.ingredients
+        })
+        .then(function (potion) {
+            req.flash('info', 'Change successful!');
+            res.redirect('/potions/list');
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+    }
+});
+
+router.get('/all/setstatus/:id', function (req, res) {
+    var id = req.params.id;
+    req.app.models.potion.update({id: id}, {status: 'read'})
+    .then(function (potions) {
+        res.render('potions/all', {
+            potions: decoratePotions(potions),
+            messages: req.flash('info')
+        });
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
 });
 
 router.get('/all/delete/:id', function(req, res) {

@@ -20,6 +20,7 @@
                 <th>Date</th>
                 <th>Status</th>
                 <th>Edit</th>
+                <th>Set status</th>
                 <th>Delete</th>
             </tr>   
         </thead>
@@ -33,6 +34,7 @@
                 <td>{{date}}</td>
                 <td><span class="label label-{{statusClass}}">{{statusText}}</span></td>
                 <td><a class="btn btn-primary btn-sm" href="/potions/all/edit/{{id}}" role="button">Edit</a></td>
+                <td><a class="btn btn-info btn-sm" href="/potions/all/setstatus/{{id}}" role="button">Set to 'Read'</a></td>
                 <td><a class="btn btn-danger btn-sm" href="/potions/all/delete/{{id}}" role="button">Delete</a></td>
             </tr>
             {{/each}}
