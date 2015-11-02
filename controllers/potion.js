@@ -125,10 +125,7 @@ router.get('/all/setstatus/:id', function (req, res) {
     var id = req.params.id;
     req.app.models.potion.update({id: id}, {status: 'read'})
     .then(function (potions) {
-        res.render('potions/all', {
-            potions: decoratePotions(potions),
-            messages: req.flash('info')
-        });
+        res.redirect('/potions/all');
     })
     .catch(function (err) {
         console.log(err);

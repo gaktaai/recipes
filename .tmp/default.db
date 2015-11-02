@@ -17,7 +17,7 @@
           "id": 1
         },
         "createdAt": "2015-11-01T21:53:16.985Z",
-        "updatedAt": "2015-11-02T21:16:09.335Z",
+        "updatedAt": "2015-11-02T21:35:28.440Z",
         "id": 1
       },
       {
@@ -44,7 +44,7 @@
         "effect": "Changes you to look like someone else.",
         "ingredients": "Fluxweed, Leeches, Knotgrass, Bicorn Horn, Boomslang Skin, Lacewing flies, some hair or nail piece of the &quot;chosen one&quot;",
         "date": "2015-11-01T21:54:59.000Z",
-        "status": "new",
+        "status": "read",
         "user": {
           "username": "ss",
           "email": "ss@slytherin.co.uk",
@@ -55,7 +55,7 @@
           "id": 2
         },
         "createdAt": "2015-11-01T21:54:59.857Z",
-        "updatedAt": "2015-11-01T21:54:59.857Z",
+        "updatedAt": "2015-11-02T21:36:12.826Z",
         "id": 3
       },
       {
@@ -93,7 +93,7 @@
           "id": 2
         },
         "createdAt": "2015-11-01T21:55:43.038Z",
-        "updatedAt": "2015-11-01T21:55:43.038Z",
+        "updatedAt": "2015-11-02T21:33:57.554Z",
         "id": 5
       }
     ],
