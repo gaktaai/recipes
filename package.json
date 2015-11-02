@@ -1,41 +1,44 @@
 {
   "name": "workspace",
   "version": "1.0.0",
-  "description": "Alkalmazások fejlesztése beadandó",
+  "description": "Alkalmazások fejlesztése beadandó v 1.0",
   "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.14.1",
-    "connect-flash": "^0.1.1",
+    "chai": "^3.4.0",
     "express": "^4.13.3",
+    "connect-flash": "^0.1.1",
     "express-session": "^1.12.1",
-    "express-validator": "^2.18.0",
     "hbs": "^3.1.1",
+    "express-validator": "^2.18.0",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "sails-disk": "^0.10.8",
-    "sails-memory": "^0.10.5",
     "sails-postgresql": "^0.10.16",
-    "waterline": "^0.10.26"
+    "waterline": "^0.10.26",
+    "zombie": "^4.2.1",
+    "sails-memory": "^0.10.5"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha **/*.test.js",
-    "watch-test": "node_modules/mocha/bin/mocha --watch **/*.test.js",
+    "test": "mocha",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gaktaai/recipes.git"
   },
+  "keywords": [],
   "author": "gaktaai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gaktaai/recipes/issues"
   },
-  "homepage": "https://github.com/gaktaai/recipes#readme",
-  "devDependencies": {
-    "chai": "^3.4.0",
-    "mocha": "^2.3.3",
-    "zombie": "^4.2.1"
-  }
+  "homepage": "https://github.com/gaktaai/recipes#readme"
 }
